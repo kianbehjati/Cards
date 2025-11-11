@@ -1,0 +1,53 @@
+{% extends "_Base/Base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content col-8 offset-2">
+        <h1>SingUp</h1>
+        <form action="" class="col-12 col-lg-6 offset-lg-3 col-md-6 offset-md-3 form" method="post">
+            {% csrf_token %}
+            <div class="input-box">
+                <div class="row col-8 offset-2">{{ form.user_name }}</div>
+            </div>
+            <div class="input-box col-12">
+                <div class="row col-8 offset-2">{{ form.email }}</div>
+            </div>
+            <div class="input-box phone">
+                <div class="row col-8 offset-2">
+                    <div class="country-box float-start"><span class="code">+333</span> <img class="dropdown" height="12" width="12" src="{% static 'img/arrows/dropdown.png' %}" alt=""></div>
+                    <input type="tel" class="phone-input col-7" placeholder="Phone Number" id="phone-input" name="phone_input">
+                </div>
+            </div>
+            <div class="col-8 offset-2">
+                <div class="phones-box">
+                     <div class="col-12"><input type="text" class="search-box" placeholder="Country Name" id="search-box"></div>
+                    <ul class="list">
+
+                    </ul>
+
+                </div>
+
+            </div>
+            <div class="input-box">
+                <div class="row col-8 offset-2">{{ form.password }}</div>
+            </div>
+            <div class="input-box">
+                <div class="row col-8 offset-2">{{ form.confirm_password }}</div>
+            </div>
+            {% for err in form.non_field_errors %}
+                <p class="error">*{{ err }}</p>
+            {% endfor %}
+            <button type="submit" class="col-6 offset-3 submit">
+                SingUp
+            </button>
+        </form>
+    </div>
+{% endblock %}
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+    <link rel="stylesheet" href="{% static "css/register.css" %}">
+    <link rel="stylesheet" href="{% static "css/content.css" %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/register.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,84 @@
+
+.border {
+    border: white;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.image {
+    background-image: url("http://127.0.0.1:8000/static/img/img4.jpg");
+    height: 200px;
+}
+.image-description {
+    padding-top: 60px;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+    z-index: 1;
+}
+
+p {
+    letter-spacing: 0.5px;
+}
+
+.about {
+    background-color: #f4f4f4;
+    border: solid 1px #f4f4f4;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    transition: box-shadow 0.4s,padding 0.5s ,margin-bottom 0.5s;
+}
+
+
+.parent-des {
+    border-radius: 10px;
+    background-color: #f4f4f4;
+}
+
+.creditcard {
+    margin-top: 20px;
+    opacity: 0.05;
+
+}
+.content {
+    opacity: 0;
+    margin-top: 300px;
+    transition: opacity 1s;
+}
+
+
+.easy {
+    margin-left: 0px;
+}
+@media screen and (max-width: 1000px){
+    .content {
+        margin-top: 100px;
+    }
+    .about {
+        margin-left: 8.5%;
+    }
+    .about:hover{
+        box-shadow: #c8edf6 0px 0px 20px 13px;
+        padding: 5px;
+    }
+}
+@media screen and (min-width: 1000px){
+    .content {
+        height: 500px;
+    }
+    .fast {
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+    .about:hover{
+        box-shadow: #c8edf6 0px 0px 20px 13px;
+        padding: 3px;
+        margin-bottom: 15px;
+    }
+}
+

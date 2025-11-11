@@ -1,0 +1,98 @@
+header {
+    height: 60px;
+    width: 100%;
+    background: rgb(115,222,250);
+    background: linear-gradient(90deg, rgba(115,222,250,1) 0%, rgba(244,244,244,1) 29%);
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+}
+.header-list-items {
+    padding-left: 10px;
+    padding-top: 13px;
+    align-items: center;
+}
+.header-item {
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+    font-family: "Arial";
+}
+.home-ico {
+    position: absolute;
+    left: 5px;
+    color: silver;
+    font-size: 30px;
+    top:5px;
+}
+.nav-ico {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    visibility: hidden;
+}
+.theme-ico {
+    position: absolute;
+    right: 55px;
+    top: 13px;
+}
+
+.hamdiv {
+    width: 100%;
+    top: 60px;
+    right: 0;
+    position: fixed;
+    background-color: #74d4e8;
+    max-height: 0px;
+    transition: max-height 1.5s ease-out;
+    z-index: 1;
+    visibility: hidden;
+}
+
+.hamlist {
+    align-items: center;
+    padding-left: 0px;
+    margin-bottom: 0;
+    opacity: 0;
+    transition: opacity 0.5s 0.7s;
+}
+.hamitem {
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 500ms;
+}
+.hamitem:hover {
+    background-color: white;
+    color: black;
+}
+@media screen and (max-width: 1000px){
+    .link {
+        visibility: hidden;
+    }
+
+    .nav-ico {
+        visibility: visible;
+    }
+
+}
+@media screen and (min-width: 1000px){
+    .hamdiv {
+        visibility: hidden;
+    }
+
+}
+.link {
+    text-decoration: none;
+    color: black;
+    z-index: 1;
+}
+.link:hover {
+    color: gainsboro;
+}
+
+.logo {
+    margin-top: 10px;
+    margin-left: 5px;
+}

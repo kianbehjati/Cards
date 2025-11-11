@@ -1,0 +1,41 @@
+{% extends "_Base/Base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="content user-panel-content col-10 col-xl-6 col-lg-8 col-md-8 col-sm-10 offset-xl-3 offset-lg-2 offset-md-2 offset-sm-1 offset-1">
+        <h1>User Panel</h1>
+        <div class="row">
+            <div class="user-info col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                <div class="info-box col-12"><span>Username <a href="{% url 'authentication:useredit' %}"><img src="{% static 'img/arrows/edit.png' %}" alt=""></a></span><p>{{ user.username }}</p></div>
+                <div class="info-box col-12"><span>Email</span><p>{{ user.email }}</p></div>
+                <div class="info-box col-12"><span>Phone</span><p>{{ user.phone_number }}</p></div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2"></div>
+            {% if card %}
+                <div class="creditcard col-10 offset-1 offset-xl-0 offset-lg-0 offset-md-0 offset-sm-2 col-xl-6 col-lg-6 col-md-6 col-sm-8">
+                    <div class="card-box float-lg-end float-xl-end float-md-end">
+                        <div class="row justify-content-between">
+                            <div class="owner col-6">{{ user.username }} <a href="/payment/transactions/{{ card.card_number }}"><img title="Transactions History" width="25" height="25" src="https://img.icons8.com/ios/50/000000/time-machine--v1.png" alt="time-machine--v1"/></a></div>
+
+                            <div class="logo col-3"><img src="{% static "img/logo/logo.png" %}" width="40" height="40" alt=""></div>
+                        </div>
+                        <div class="balance">$ {{ card.balance }}</div>
+                        <div class="card-number">{{ card.card_number }}</div>
+                    </div>
+                </div>
+            {% else %}
+
+                <a href="/auth/card-call/{{ user.id }}" class="col-lg-2 offset-lg-5 col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-8 offset-2 create-card"><button class="create-card">Create Card</button></a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/content.css" %}">
+    <link rel="stylesheet" href="{% static "css/userpanel.css" %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static "js/user-panel.js" %}"></script>
+{% endblock %}

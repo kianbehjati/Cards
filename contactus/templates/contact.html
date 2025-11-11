@@ -1,0 +1,47 @@
+{% extends "_Base/Base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="pop-up">
+        Sent Successfully
+    </div>
+    <div class="content col-xl-4 col-lg-6 offset-lg-3 col-md-8 offset-xl-4 offset-md-2 col-sm-8 offset-sm-2 col-10 offset-1">
+        <form class="col-8 offset-2" action="" method="post">
+            {% csrf_token %}
+            <h1>Contact Us</h1>
+            <div class="row">
+
+                <div class="col-xl-6 col-lg-12"><h4><span>*</span>Title</h4>{{ form.title }}</div>
+                <div class="col-xl-1 col-lg-0"></div>
+                <div class="col-xl-5 col-lg-12"><h4><span>*</span>Email</h4>{{ form.email }}</div>
+            </div>
+            <div class="col-12">
+                {{ form.text }}
+            </div>
+            <button type="submit" class="col-xl-4 offset-xl-4 col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-6 offset-sm-3 col-8 offset-2">Send</button>
+        </form>
+    </div>
+     {% if form_status == "sent"%}
+             <script>
+
+                let pop_up = document.querySelector('.pop-up');
+                let pop_span = document.querySelector('.pop-span');
+
+                if ((pop_up.style.right = "20px") || (pop_up.style.right = "-300px")) {
+
+                    pop_up.style.right = "20px";
+                    pop_up.style.opacity = "1";
+                    setTimeout(() => {
+                        pop_up.style.right = "-300px";
+                        pop_up.style.opacity = "0";
+                    },3000)
+
+                    }
+             </script>
+    {% endif %}
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/content.css" %}">
+    <link rel="stylesheet" href="{% static "css/contactus.css" %}">
+{% endblock %}

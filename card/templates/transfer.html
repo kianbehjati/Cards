@@ -1,0 +1,46 @@
+{% extends "_Base/Base.html" %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/content.css" %}">
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+    <link rel="stylesheet" href="{% static "css/transfer.css" %}">
+{% endblock %}
+{% block content %}
+    <div class="content col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-10 offset-1" style="padding-right: 30px;padding-left: 30px">
+        <form action="" method="post">
+            <h1 class="transfer">Transfer</h1>
+            {% csrf_token %}
+            <div class="row lg" style="text-align: left">
+
+                <div class="row">
+                    <div class="col-lg-7 to">{{ form.to }} <p class="guide"></p></div>
+                    <div class="row col-lg-5">
+                        <div class="col-lg-8 col-sm-5 col-8 amount">{{ form.amount }}<div class="amount-currect"></div></div><span class="col-lg-1 col-1">$</span>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="row description-box">
+                <h5 style="text-align: left">description(optional)</h5>
+                <div class="col-12" style="text-align: left">
+                    {{  form.description }}
+                </div>
+            </div>
+            {% if error == "nocard" %}
+                <h1 class="error">*You have no card</h1>
+            {% elif error == "unvalid card"%}
+                <button type="submit" class="col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-10 offset-1">Transfer</button>
+                <p class="error">*destination card number does not exists</p>
+            {% elif error is None%}
+                <button type="submit" class="col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-10 offset-1">Transfer</button>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static "js/transfer.js" %}"></script>
+{% endblock %}

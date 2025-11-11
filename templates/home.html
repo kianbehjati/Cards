@@ -1,0 +1,59 @@
+{% extends "_Base/Base.html" %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
+
+{% endblock %}
+
+
+{% block content %}
+<div>
+    <div class="content col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="about col-lg-6 col-10">
+                <h1>Deposit With Rial <span><img width="100" height="100" src="https://img.icons8.com/clouds/100/money-bag.png" alt="money-bag"/></span></h1>
+                <p>
+                    you can deposit to your wallet with Rial with any credit card you want
+                </p>
+            </div>
+
+            <div class="about col-lg-3 col-10">
+                <h1>Transfer<span><img width="100" height="100" src="https://img.icons8.com/bubbles/100/apple-clock.png" alt="apple-clock"/></span></h1>
+                <p>
+                    To everyone and anytime
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="about col-lg-3 col-10">
+                <h1>Safe <span><img width="100" height="100" src="https://img.icons8.com/plasticine/100/safe.png" alt="safe"/></span></h1>
+                <p>
+                    trustable and <span style="font-style: italic">ENCRYPTED</span>
+                </p>
+            </div>
+
+            <div class="about fast col-lg-2 col-10" id="fast">
+                <h1>Fast<span><img width="100" height="100" src="https://img.icons8.com/dusk/100/lightning-bolt.png" alt="lightning-bolt"/></span></h1>
+                <p>
+                    And reliable
+                </p>
+            </div>
+            <div class="about easy col-lg-3 col-10">
+                <h1>Easy<span><img class="logo" width="85" height="85" src="https://img.icons8.com/external-sbts2018-flat-sbts2018/100/external-50-credit-card-finance-basic-1-sbts2018-flat-sbts2018.png" alt="external-50-credit-card-finance-basic-1-sbts2018-flat-sbts2018"/></span></h1>
+                <p>
+                    To Use
+                </p>
+            </div>
+        </div>
+</div>
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

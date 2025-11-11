@@ -1,0 +1,52 @@
+.form {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    padding: 20px 0 20px 0;
+}
+.input {
+    background-color: transparent;
+    border: none;
+    border-bottom:silver solid 1px;
+    outline: none;
+    margin-top: 15px;
+    font-size: 17px;
+}
+.phone-input {
+    background-color: transparent;
+    border: none;
+    border-bottom:silver solid 1px;
+    outline: none;
+    margin-top: 15px;
+    font-size: 17px;
+}
+
+.error {
+    margin-top: 15px;
+    color: #c75959;
+}
+.pass {
+    margin-top: 40px;
+}
+.forget-password {
+    margin-top: 15px;
+}
+
+label {
+    display: block;
+    padding-right: 108px;
+}
+button {
+    display: block;
+    margin-top: 40px;
+    border: none;
+    background-color: #74d4e8;
+    border-radius: 3px;
+    padding: 15px 15px 20px 15px;
+    transition: background-color 0.5s;
+}
+button:hover {
+    background-color: #64b3c7;
+}
+button:focus {
+    background-color: #8382ff;
+}

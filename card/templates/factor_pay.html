@@ -1,0 +1,64 @@
+{% extends "_Base/Base.html" %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/content.css"%}">
+    <link rel="stylesheet" href="{% static "css/factor.css"%}">
+{% endblock %}
+<div>
+{% block content %}
+    <div class="pop-up">
+        <span class="pop-span"><img width="30" height="30" src="https://img.icons8.com/officel/30/spam.png" alt="spam"/> balance is less then </span>
+    </div>
+    <div class="content col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-10 offset-1">
+        <h1 class="factor-detail">Factor Details</h1>
+        <p>factor id <span>{{ factor.id }}</span></p>
+        <p class="about-factor">description<span>{{ factor.description }}</span></p>
+        <p>amount<span class="amount">{{ factor.amount }}</span></p>
+        <p>to <span  class="to">{{ factor.to.card_number }}({{ factor.to.owner }})</span></p>
+        <p>fee <span  class="fee"></span></p>
+        <hr>
+        <p>total <span  class="total amount"></span></p>
+        <p>your account balance <span  class="balance">{{ balance }}$</span></p>
+
+        {% if error == "balance"%}
+             <script>
+
+                let pop_up = document.querySelector('.pop-up');
+                let pop_span = document.querySelector('.pop-span');
+
+                if ((pop_up.style.right = "20px") || (pop_up.style.right = "-300px")) {
+
+                    pop_up.style.right = "20px";
+                    pop_up.style.opacity = "1";
+                    setTimeout(() => {
+                        pop_up.style.right = "-300px";
+                        pop_up.style.opacity = "0";
+                    },3000)
+
+                    }
+             </script>
+        {% endif %}
+        {% if error == "no_card" %}
+            <p class="error col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-10 offset-1">*You have no credit card in your account</p>
+         {% elif error == "same_card" %}
+            <p class="error col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-10 offset-1">*You can't transfer from your card back to it</p>
+        {% else %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" hidden value="{{ factor.description }}">
+            {% if payed %}
+                <h1 class="payed col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-10 offset-1">Payed</h1>
+            {% else %}
+                <button class="col-lg-6 col-md-6 col-10 pay-button" title="transfer" ><img  width="60" height="60" src="https://img.icons8.com/dusk/64/money-transfer--v1.png" alt="money-transfer--v1"/></button>
+            {% endif %}
+
+        </form>
+        {% endif %}
+
+    </div>
+{% endblock %}
+</div>
+{% block script %}
+    <script src="{% static 'js/factor.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "_Base/Base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content col-8 offset-2">
+        <h1>Login</h1>
+        <form action="" class="col-12 col-lg-4 offset-lg-4 col-md-6 offset-md-3 form" method="post">
+            {% csrf_token %}
+            <div class="input-box">
+                {{ form.user_name }}
+            </div>
+            <div class="input-box">
+                {{ form.password }}
+            </div>
+            {% for err in form.non_field_errors %}
+                <p class="error">*{{ err }}</p>
+            {% endfor %}
+            <button type="submit" class="col-6 offset-3">
+                Login
+            </button>
+            <div class="forget-password"><a href="{% url "authentication:forgetpass" %}" style="color: #c75959;text-decoration: none">Forget Password?</a></div>
+        </form>
+    </div>
+{% endblock %}
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+    <link rel="stylesheet" href="{% static "css/content.css" %}">
+{% endblock %}

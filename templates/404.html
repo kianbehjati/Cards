@@ -1,0 +1,13 @@
+{% extends "_Base/Base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="content col-lg-6 offset-lg-3 col-10 offset-1">
+        <h1>404</h1>
+        <p>Not found</p>
+    </div>
+{% endblock %}
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/content.css" %}">
+    <link rel="stylesheet" href="{% static "css/404.css" %}">
+{% endblock %}

@@ -1,0 +1,37 @@
+.top {
+    margin-bottom: 50px;
+}
+.top-item {
+    font-weight: bold;
+    font-size: larger;
+}
+.detail {
+    margin-bottom: 40px;
+}
+
+.amount-neg {
+    color: #f06b6b;
+}
+.amount-pos {
+    color: #c3dc95;
+}
+.incoming {
+    cursor: pointer;
+}
+.amount {
+    cursor: pointer;
+}
+.user {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: -5px;
+}
+.arrow {
+    transform: rotateZ(-15deg);
+}
+
+@media screen and (max-width: 570px){
+    .arrow-detail {
+        max-width: 80px;
+    }
+}

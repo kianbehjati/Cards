@@ -1,0 +1,119 @@
+span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    padding-left: 20px;
+    font-weight: bold;
+}
+
+p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 35px;
+    padding-top: 5px;
+}
+.user-info {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 30px;
+    text-align: left;
+}
+.info-box {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 30px 0 30px 0;
+}
+
+.logo {
+
+}
+
+
+@media (max-width: 768px){
+    .card-box {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-self: center;
+        background: rgb(115,222,250);
+        background: linear-gradient(90deg, rgba(115,222,250,1) 0%, rgba(114,81,194,1) 81%, rgba(136,138,167,1) 100%);
+        height: 200px;
+        width: 100%;
+        border-radius: 10px;
+    }
+    .balance {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: static;
+        padding-top: 30px;
+        margin-left: 10px;
+        text-align: left;
+        font-size: 35px;
+        font-weight: bold;
+        color: #f3f3f3;
+
+    }
+    .card-number {
+
+        margin-top: 15px;
+        font-size: 15px;
+        font-weight: bold;
+        opacity: 0.7;
+    }
+    .owner{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 25px;
+        margin-top: 17px;
+        padding-left: 0;
+        color: #f3f3f3;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: left;
+    }
+}
+@media screen and (min-width: 768px){
+    .card-box {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background: rgb(115,222,250);
+        background: linear-gradient(90deg, rgba(115,222,250,1) 0%, rgba(114,81,194,1) 81%, rgba(136,138,167,1) 100%);
+        height: 200px;
+        margin-top: 55px;
+        width: 100%;
+        margin-right: 20px;
+        border-radius: 10px;
+        max-width: 330px;
+    }
+    .balance {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 25px;
+        margin-left: 10px;
+        text-align: left;
+        font-size: 35px;
+        font-weight: bold;
+        color: #f3f3f3;
+    }
+    .card-number {
+        margin-top: 15px;
+        font-size: 13px;
+        font-weight: bold;
+        opacity: 0.7;
+    }
+    .owner{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 15px;
+        margin-top: 17px;
+        color: #f3f3f3;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: left;
+    }
+}
+.create-card{
+    border-radius: 5px;
+    border: none;
+    background-color: #74d4e8;
+    padding: 15px 0 15px 0;
+}

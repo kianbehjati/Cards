@@ -1,0 +1,48 @@
+{% extends "_Base/Base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content user-edit-content col-10 offset-1 col-xl-4 offset-xl-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row col-8 offset-2 input-box"><input type="text" class="input" placeholder="User Name" value="{{ user.username }}" name="user_name"></div>
+            <div class="row col-8 offset-2 input-box"><input type="text" class="input" placeholder="Email" value="{{ user.email }}" name="email"></div>
+
+            <div class="col-12 input-box phone">
+                <div class="row col-8 offset-2">
+                    <div class="country-box float-start"><span class="code">+xx</span> <img class="dropdown" height="12" width="12" src="{% static 'img/arrows/dropdown.png' %}" alt=""></div>
+                    <input type="tel" class="phone-input col-7" placeholder="Phone Number" id="phone-input" name="phone_input" value="{{ user.phone_number }}">
+                </div>
+                <div class="col-8 offset-2">
+                <div class="phones-box">
+                     <div class="col-12"><input type="text" class="search-box" placeholder="Country Name" id="search-box"></div>
+                    <ul class="list">
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            </div>
+            {% if err %}
+                <p class="error">*{{ err }}</p>
+            {% endif %}
+            <a class="change-pass" href="{% url "authentication:forgetpass" %}">Change Password</a>
+            <button type="submit" class="col-6 offset-3">
+                Edit
+            </button>
+        </form>
+    </div>
+{% endblock %}
+
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/user-edit.css' %}">
+    <link rel="stylesheet" href="{% static 'css/content.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static "js/register.js" %}"></script>
+{% endblock %}

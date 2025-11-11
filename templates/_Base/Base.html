@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" style="text-align: center;
+    letter-spacing: 0.7px;
+    height: fit-content;
+    box-sizing: border-box;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-reboot.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static "img/logo/logo.png" %}">
+    <link rel="stylesheet" href="{% static "css/header.css" %}">
+    <link rel="stylesheet" href="{% static "css/footer.css" %}">
+    {% block link %}
+    {% endblock %}
+
+</head>
+
+<body>
+<header>
+        <div class="col-md-12">
+            <div class="col-lg-8 offset-lg-2 col-sm-10 offset-sm-1">
+                <ul class="header-list-items">
+                    {% if request.user.is_authenticated %}
+                        <li class="header-item"><a href="{% url 'authentication:userpanel' %}" class="link user">User Panel</a></li>
+                        <li class="header-item"><a href="{% url 'authentication:logout' %}" class="link login">logout</a></li>
+                        <li class="header-item"><a href="{% url 'transfer' %}" class="link transfer">transfer</a></li>
+                    {% endif %}
+                    {% if not request.user.is_authenticated %}
+                        <li class="header-item"><a href="{% url 'authentication:login' %}" class="link login">login</a></li>
+                        <li class="header-item"><a href="{% url 'authentication:signup' %}" class="link singup">singup</a></li>
+                    {% endif %}
+                    <li class="header-item"><a href="{% url 'contactus' %}" class="link contact">contactus</a></li>
+
+                    <li class="header-item theme-ico" id="moon" onclick="theme_change('{% static "img/theme/sun.png" %}','{% static "img/theme/moon.png" %}')"><img src="{% static "img/theme/moon.png" %}" alt="" height="35"></li>
+                    <li class="header-item"><img width="30" height="30" class="nav-ico"src="{% static 'img/ham/black.png' %}" alt="menu--v6"/></li>
+                    <li class="header-item"><a href="/" class="home-ico"><img src="{% static "img/logo/logo.png" %}" alt="" height="55"></a></li>
+                </ul>
+
+            </div>
+        </div>
+</header>
+<div class="col-lg-12 hamdiv">
+        <ul class="col-lg-12 hamlist">
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'authentication:userpanel' %}" class="hamitem hamlink">User Panel</a></li>
+                <li><a href="{% url "authentication:logout" %}" class="hamitem hamlink">logout</a></li>
+                <li><a href="{% url 'transfer' %}" class="hamitem hamlink">transfer</a></li>
+            {% endif %}
+            {% if not request.user.is_authenticated %}
+                <li><a href="{% url 'authentication:login' %}" class="hamitem hamlink">login</a></li>
+                <li><a href="{% url 'authentication:signup' %}" class="hamitem hamlink">signup</a></li>
+            {% endif %}
+            <li><a href="{% url 'contactus' %}" class="hamitem hamlink">contactus</a></li>
+        </ul>
+</div>
+
+{% block content %}
+{% endblock %}
+
+
+
+<div class="footer">
+    <div class="row">
+        <div class="col-3 footer-item">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-6 col-xl-6 col-12">
+                    <a href="/" class="footer-link-left">Home</a>
+                    <a href="{% url 'authentication:login' %}" class="footer-link-left">Login</a>
+                    <a href="{% url 'authentication:signup' %}" class="footer-link-left">Sing Up</a>
+                </div>
+                <div class="col-md-12 col-sm-12 col-lg-6 col-xl-6 col-12">
+                    <a href="{% url 'transfer' %}" class="footer-link-left">Transfer</a>
+                    <a href="{% url 'authentication:userpanel' %}" class="footer-link-left">User Panel</a>
+                    <a href="{% url 'contactus' %}" class="footer-link-left">Contact Us</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 footer-item">
+            <div class="row footer-middle col-xl-4 offset-lg-4 col-lg-4 offset-lg-4 ">
+                <div class="row col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="col-6 footer-img-middle">
+                        <img src="{% static "img/icons/linkedin.png" %}"  alt="" title="linkedin" class="" width="50">
+                    </div>
+                    <div class="col-6 footer-img-middle">
+                        <img src="{% static "img/icons/twitter.png" %}"  alt="" title="twitter" class="" width="50">
+                    </div>
+                </div>
+                <div class="row col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="col-6 footer-img-middle">
+                        <img src="{% static "img/icons/telegram.png" %}"  alt="" class="" title="telegram" width="50">
+                    </div>
+                    <div class="col-6 footer-img-middle">
+                        <img src="{% static "img/icons/instagram.png" %}"  alt="" class="" title="instagram" width="50">
+                    </div>
+                </div>
+
+            </div>
+            <div class="stay-in-touch">
+                Stay In Touch
+            </div>
+        </div>
+        <div class="col-3 footer-item">
+            <div>
+                <div class="col-12 footer-img-right">
+                    <img src="{% static "img/icons/phone.png" %}"  alt="" title="phone" class="" width="20"> +97979797
+                </div>
+                <div class="col-12 footer-img-right">
+                    <img src="{% static "img/icons/messags.png" %}"  alt="" title="message" class="" width="20"> +97979797
+                </div>
+                <div class="col-12 footer-img-right">
+                    <img src="{% static "img/icons/gps.png" %}"  alt="" title="location" class="gps" width="25"> Tehran,Iran
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static "js/nav.js" %}"></script>
+<script src="{% static "js/base.js" %}"></script>
+<script src="{% static "bootstrap/js/bootstrap.bundle.js" %}"></script>
+
+
+</body>
+
+
+{% block script %}
+{% endblock %}
+</html>
