@@ -4,14 +4,14 @@ class login_form(forms.Form):
     user_name = forms.CharField(
         widget=forms.TextInput(attrs=
         {
-            'class':'input',
+            'class':'form-control',
             'placeholder':"User name"
         }
     ))
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class":"input pass",
+                "class":"form-control",
                 "placeholder":"Password"
             }
         )
