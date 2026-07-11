@@ -283,8 +283,8 @@ def signup_view(request):
                         myUser.objects.create_user(username=username, phone_number=phone_number, email=email, password=password)
                         user = authenticate(username=username, password=password)
                         login(request,user)
-                        
-                        async_task("authentication.tasks.send_email",user.email,user.username)
+                        message = f"Hi dear {username} \n we wish you best experience \n\n درود {username} به وبسایت من خوش امدید و بهترین تجربه رو برای شما ارزومند هستم"
+                        async_task("authentication.tasks.send_email",user.email,user.username,message)
                         return redirect(resolve_url('authentication:userpanel'))
     else:
         return redirect(f'/auth/logout?next={resolve_url("authentication:signup")}')

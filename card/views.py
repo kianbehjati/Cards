@@ -7,6 +7,7 @@ from .serializer import *
 from rest_framework.generics import *
 from .models import *
 from django.http import *
+from django_q.tasks import async_task
 import datetime
 
 
@@ -33,7 +34,7 @@ def pay_factor(request,paylink):
 
             factor = obj.first()
 
-            if factor.status == "payed":
+            if factor.status == "payed": #fix multiple pay
                 context["payed"] = True
                 context["factor"] = factor
                 return render(request, "factor_pay.html", context)
@@ -55,10 +56,28 @@ def pay_factor(request,paylink):
                         factor.payed_date = datetime.datetime.now()
                         user_card.balance -= factor.amount*1.2/100 + factor.amount
 
-
                         factor.save()
                         factor.to.save()
                         user_card.save()
+
+                        sender = user_card.owner
+                        receiver = factor.to.owner
+
+                        if sender.email:
+                            async_task(
+                                "authentication.tasks.send_email",
+                                sender.email,
+                                sender.username,
+                                f"Your payment of {factor.amount} has been sent to {receiver.username}."
+                            )
+
+                        if receiver.email:
+                            async_task(
+                                "authentication.tasks.send_email",
+                                receiver.email,
+                                receiver.username,
+                                f"You have received {factor.amount} from {sender.username}."
+                            )
 
                         context["payed"] = True
 
