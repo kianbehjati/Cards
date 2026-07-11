@@ -25,7 +25,7 @@ PEPPER = env('PEPPER')
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*"] # not secure change this in production
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     "whitenoise.runserver_nostatic",
+    'django_q'
 ]
 
 
@@ -157,3 +158,16 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'someemail@email.com'
 EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD')
 EMAIL_USE_SSL = False
+
+### django-q ###
+Q_CLUSTER = {
+    'name': 'DjangoQ',
+    'workers': 8,
+    'timeout': 60,
+    'retry':120, # 1 minute space in between just in case
+    'redis': {
+        "host":"redis" ,# for docker compose
+        "port":6379,
+        "db":0
+    }
+}
