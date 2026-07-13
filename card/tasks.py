@@ -46,6 +46,9 @@ def send_unpaid_factor_notifications():
             )
 
 ### schedule(for reference) ###
+
+# the scheduling is mostly done through django-admin in django-q2 , these are only as reference for you
+
 # schedule('card.tasks.total_balance',schedule_type=Schedule.DAILY)
 # schedule('card.tasks.important_users',schedule_type=Schedule.DAILY)
 # schedule('card.tasks.unpaid_factors',schedule_type=Schedule.CRON,cron = "0 0 0/5 ? * * *") #every 5 hourd
