@@ -5,3 +5,4 @@ __pycache__/
 *.pot
 .env
 db.sqlite3
+static
