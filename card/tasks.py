@@ -5,6 +5,7 @@ from django_q.tasks import async_task
 from django.conf import settings
 import csv
 from authentication.models import myUser
+from django_q.tasks import schedule,Schedule
 
 ### monitoring & report functions ###
 def total_balance():
@@ -43,3 +44,8 @@ def send_unpaid_factor_notifications():
                 owner.username,
                 message,
             )
+
+### schedule(for reference) ###
+# schedule('card.tasks.total_balance',schedule_type=Schedule.DAILY)
+# schedule('card.tasks.important_users',schedule_type=Schedule.DAILY)
+# schedule('card.tasks.unpaid_factors',schedule_type=Schedule.CRON,cron = "0 0 0/5 ? * * *") #every 5 hourd
