@@ -9,7 +9,7 @@ from .models import *
 from django.http import *
 from django_q.tasks import async_task
 import datetime
-
+from django.core.cache import cache
 
 @login_required(login_url="/auth/login")
 def pay_factor(request,paylink):
@@ -34,7 +34,7 @@ def pay_factor(request,paylink):
 
             factor = obj.first()
 
-            if factor.status == "payed": #fix multiple pay
+            if factor.status == "P":
                 context["payed"] = True
                 context["factor"] = factor
                 return render(request, "factor_pay.html", context)
@@ -55,6 +55,9 @@ def pay_factor(request,paylink):
                         factor.status = "P"
                         factor.payed_date = datetime.datetime.now()
                         user_card.balance -= factor.amount*1.2/100 + factor.amount
+
+                        #invalidate unpaid_factors cache
+                        cache.delete("unpaid_factors")
 
                         factor.save()
                         factor.to.save()
@@ -154,27 +157,27 @@ def transactions(request,card_number):
                         kind = request.GET.get("kind")
 
                         if amount == "highest" and kind == "outgoing":
-                            factors = Factor.objects.filter(Q(from_u=card) & Q(status="payed")).order_by(
+                            factors = Factor.objects.filter(Q(from_u=card) & Q(status="P")).order_by(
                                 "-amount")
                             return render(request, "transactions.html", context={"factors": factors})
 
                         elif amount == "highest" and kind == "incoming":
-                            factors = Factor.objects.filter(Q(to=card) & Q(status="payed")).order_by(
+                            factors = Factor.objects.filter(Q(to=card) & Q(status="P")).order_by(
                                 "-amount")
                             return render(request, "transactions.html", context={"factors": factors})
 
                         if amount == "lowest" and kind == "outgoing":
-                            factors = Factor.objects.filter(Q(from_u=card) & Q(status="payed")).order_by(
+                            factors = Factor.objects.filter(Q(from_u=card) & Q(status="P")).order_by(
                                 "amount")
                             return render(request, "transactions.html", context={"factors": factors})
 
                         elif amount == "lowest" and kind == "incoming":
-                            factors = Factor.objects.filter(Q(to=card) & Q(status="payed")).order_by(
-                                "-amount")
+                            factors = Factor.objects.filter(Q(to=card) & Q(status="P")).order_by(
+                                "amount")
                             return render(request, "transactions.html", context={"factors": factors})
 
                         else:
-                            factors = Factor.objects.filter((Q(from_u=card) | Q(to=card)) & Q(status="payed")).order_by(
+                            factors = Factor.objects.filter((Q(from_u=card) | Q(to=card)) & Q(status="P")).order_by(
                                 "-payed_date")
                             return render(request, "transactions.html", context={"factors": factors})
 
@@ -186,30 +189,30 @@ def transactions(request,card_number):
                         if amount:
                             if amount == "highest":
                                 factors = Factor.objects.filter(
-                                    (Q(from_u=card) | Q(to=card)) & Q(status="payed")).order_by("-amount")
+                                    (Q(from_u=card) | Q(to=card)) & Q(status="P")).order_by("-amount")
                                 return render(request, "transactions.html", context={"factors": factors})
                             elif amount == "lowest":
                                 factors = Factor.objects.filter(
-                                    (Q(from_u=card) | Q(to=card)) & Q(status="payed")).order_by("amount")
+                                    (Q(from_u=card) | Q(to=card)) & Q(status="P")).order_by("amount")
                                 return render(request, "transactions.html", context={"factors": factors})
                             else:
                                 factors = Factor.objects.filter(
-                                    (Q(from_u=card) | Q(to=card)) & Q(status="payed")).order_by(
+                                    (Q(from_u=card) | Q(to=card)) & Q(status="P")).order_by(
                                     "-payed_date")
                                 return render(request, "transactions.html", context={"factors": factors})
 
                         else:
                             if kind == "incoming":
                                 factors = Factor.objects.filter(
-                                    Q(to=card) & Q(status="payed")).order_by("-payed_date")
+                                    Q(to=card) & Q(status="P")).order_by("-payed_date")
                                 return render(request, "transactions.html", context={"factors": factors})
                             elif kind == "outgoing":
                                 factors = Factor.objects.filter(
-                                    Q(from_u=card) & Q(status="payed")).order_by("-payed_date")
+                                    Q(from_u=card) & Q(status="P")).order_by("-payed_date")
                                 return render(request, "transactions.html", context={"factors": factors})
                             else:
                                 factors = Factor.objects.filter(
-                                    (Q(from_u=card) | Q(to=card)) & Q(status="payed")).order_by(
+                                    (Q(from_u=card) | Q(to=card)) & Q(status="P")).order_by(
                                     "-payed_date")
                                 return render(request, "transactions.html", context={"factors": factors})
                 ### end of search filters ###
