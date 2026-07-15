@@ -34,7 +34,7 @@ def pay_factor(request,paylink):
 
             factor = obj.first()
 
-            if factor.status == "payed": #fix multiple pay
+            if factor.status == "P":
                 context["payed"] = True
                 context["factor"] = factor
                 return render(request, "factor_pay.html", context)
