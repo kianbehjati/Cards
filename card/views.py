@@ -9,7 +9,7 @@ from .models import *
 from django.http import *
 from django_q.tasks import async_task
 import datetime
-
+from django.core.cache import cache
 
 @login_required(login_url="/auth/login")
 def pay_factor(request,paylink):
@@ -55,6 +55,9 @@ def pay_factor(request,paylink):
                         factor.status = "P"
                         factor.payed_date = datetime.datetime.now()
                         user_card.balance -= factor.amount*1.2/100 + factor.amount
+
+                        #invalidate unpaid_factors cache
+                        cache.delete("unpaid_factors")
 
                         factor.save()
                         factor.to.save()
