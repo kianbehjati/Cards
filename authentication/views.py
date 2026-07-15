@@ -301,7 +301,12 @@ def signup_view(request):
                     if myUser.objects.filter(phone_number=phone_number.replace(" ","")).exists():
                         signup_for.add_error(field=None, error="an other user use same phone number")
                         return render(request, 'register.html', context=context)
-
+                    
+                    if email == "" :
+                        myUser.objects.create_user(username=username,phone_number=phone_number,password=password)
+                        user = authenticate(username=username, password=password)
+                        login(request, user)
+                        return redirect(resolve_url('authentication:userpanel'))
                 else:
                     if email == "" :
                         myUser.objects.create_user(username=username,phone_number=phone_number,password=password)
