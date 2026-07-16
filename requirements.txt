@@ -1,6 +1,7 @@
 asgiref==3.11.1
 certifi==2026.6.17
 charset-normalizer==3.4.9
+coverage==7.15.2
 django==6.0.7
 django-environ==0.14.0
 django-filter==25.2
