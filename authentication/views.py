@@ -426,7 +426,7 @@ def create_card_call(request,user_id):
     card = Card.objects.filter(owner=user_id)
     if not card.exists():
 
-        Card.objects.create(owner_id=user_id,balance=1000,secret_key="hi")
+        Card.objects.create(owner_id=user_id,balance=1000,secret_key=str(user_id))
 
         return redirect(resolve_url("authentication:userpanel"))
 

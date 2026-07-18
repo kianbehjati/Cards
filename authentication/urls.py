@@ -11,6 +11,6 @@ urlpatterns = [
     path("password-change/<token>",pass_change),
     path("user-panel",user_panel,name="userpanel"),
     path("api/v1/users",UserLookUp),
-    path("card-call/<user_id>",create_card_call)
+    path("card-call/<user_id>",create_card_call,name="create_card_call")
 
 ]
