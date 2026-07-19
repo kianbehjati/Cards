@@ -24,7 +24,7 @@
   <a href="#testing">Testing</a> •
   <a href="#performance-optimizations">Performance Optimizations</a> •
   <a href="#usage">Usage</a> •
-  <a href="https://github.com/kianbehjati/Passage/blob/main/LICENSE">License</a>
+  <a href="#license">License</a>
 </p>
 
 <br>
